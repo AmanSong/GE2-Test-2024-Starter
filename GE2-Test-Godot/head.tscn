@@ -1,5 +1,17 @@
-[gd_scene format=3 uid="uid://cmnlhailh540i"]
+[gd_scene load_steps=4 format=3 uid="uid://cmnlhailh540i"]
+
+[ext_resource type="Script" path="res://behaviors/Boid.gd" id="1_phwa8"]
+[ext_resource type="Script" path="res://behaviors/Harmonic.gd" id="1_sre2k"]
+[ext_resource type="Script" path="res://behaviors/NoiseWander.gd" id="2_6ou48"]
 
 [node name="head" type="CharacterBody3D"]
+script = ExtResource("1_phwa8")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(3, 3, 3)
+
+[node name="Harmonic" type="Node" parent="CSGBox3D"]
+script = ExtResource("1_sre2k")
+
+[node name="NoiseWander" type="Node" parent="CSGBox3D"]
+script = ExtResource("2_6ou48")

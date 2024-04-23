@@ -20,19 +20,28 @@ func _process(delta):
 
 func _ready():
 	if not Engine.is_editor_hint():
-		var size = base_size * multiplier
+		var body_size = (base_size * multiplier) - 5
 	
 		# draw the head
 		var pos = transform.origin + Vector3(0, 0, 0)
-		var segment = head.instantiate()
-		segment.transform.origin = pos
-		add_child(segment)
-
+		var head = head.instantiate()
+		head.global_transform.origin = pos
+		head.get_child(0).size.x = body_size
+		head.get_child(0).size.y = body_size
+		head.get_child(0).size.z = body_size
+		add_child(head)
+		
+		# draw the body
 		for i in length:
 			var body_pos = Vector3(0, 0, 3 * i)
 			var body = cube.instantiate()
 			body.transform.origin = body_pos
+			body.get_child(0).size.x = body_size
+			body.get_child(0).size.y = body_size
+			body.get_child(0).size.z = body_size
 			add_child(body)
+			
+		
 
 
 
