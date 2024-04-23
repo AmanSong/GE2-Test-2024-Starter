@@ -12,7 +12,11 @@
 script = ExtResource("1_prfgg")
 
 [node name="creature_generator" type="Node3D" parent="."]
+transform = Transform3D(0.359687, -0.933073, 0, 0.933073, 0.359687, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_pbj1d")
+frequency = 0
+start_angle = 0
+multiplier = 0
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
