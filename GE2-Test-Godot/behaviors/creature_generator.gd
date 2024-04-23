@@ -8,18 +8,31 @@ extends Node3D
 @export var base_size = 3
 @export var multiplier = 1
 
-var force = Vector3.ZERO
+@export var head:PackedScene
+@export var cube:PackedScene
 
 func _process(delta):
 	# draw gizmo segments
-	var pos = transform.origin + Vector3(0, 0, base_size)
+	var size = base_size * multiplier
+	var pos = transform.origin + Vector3(0, 0, size)
 	for i in length:
-		DebugDraw3D.draw_box(pos * i, Quaternion.IDENTITY,  Vector3(base_size, base_size, base_size), Color.DARK_GOLDENROD, true)
+		DebugDraw3D.draw_box(pos * i, Quaternion.IDENTITY,  Vector3(size, size, size), Color.DARK_GOLDENROD, true)
 
 func _ready():
-	if not Engine.is_editor_hint():		
-		pass
+	if not Engine.is_editor_hint():
+		var size = base_size * multiplier
 	
+		# draw the head
+		var pos = transform.origin + Vector3(0, 0, 0)
+		var segment = head.instantiate()
+		segment.transform.origin = pos
+		add_child(segment)
+
+		for i in length:
+			var body_pos = Vector3(0, 0, 3 * i)
+			var body = cube.instantiate()
+			body.transform.origin = body_pos
+			add_child(body)
 
 
 
